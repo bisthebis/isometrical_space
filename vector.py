@@ -26,6 +26,9 @@ class Vec3:
     def __str__(self):
         return "({}, {}, {})".format(self.x, self.y, self.z)
 
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.z == other.z
+
     def __add__(self, other):
         """ Returns a new vector that is the sum of its args """
         return Vec3(self.x + other.x, self.y + other.y, self.z + other.z)
