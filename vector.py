@@ -23,6 +23,9 @@ class Vec3:
         """ Dot product. Returns a number """
         return self.x * other.x + self.y * other.y + self.z * other.z
 
+    def __str__(self):
+        return "({}, {}, {})".format(self.x, self.y, self.z)
+
     def __add__(self, other):
         """ Returns a new vector that is the sum of its args """
         return Vec3(self.x + other.x, self.y + other.y, self.z + other.z)
@@ -31,9 +34,22 @@ class Vec3:
         """ Returns difference of vectors """
         return Vec3(self.x - other.x, self.y - other.y, self.z - other.z)
 
+    def __mul__(self, scalar):
+        """ Multiplication by a real number """
+        return Vec3(scalar * self.x, scalar * self.y, scalar * self.z)
 
+    def __truediv__(self, scalar):
+        """ Division is multiplication by inverse """
+        scale = 1.0 / scalar
+        return self * scale
 
+    def normalized(self):
+        """ Return a new vector with the same direction but of length 1"""
+        return self / self.length()
 
-"""Tests"""
-a = Vec3(1,2,3)
-print ((a + a + a - a).length())
+    def normalize(self):
+        """ Modifies the vector make its length 1 """
+        new_vec = self.normalized()
+        self.x = new_vec.x
+        self.y = new_vec.y
+        self.z = new_vec.z
