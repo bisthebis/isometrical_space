@@ -56,3 +56,8 @@ class Vec3:
         self.x = new_vec.x
         self.y = new_vec.y
         self.z = new_vec.z
+
+
+def unit_vector_from_spherical(theta, phi):
+    """ Returns a unit vector where theta is longitude and phi is pi/2 - latitude"""
+    return Vec3(math.cos(theta) * math.sin(phi), math.sin(theta) * math.sin(phi), math.cos(phi))

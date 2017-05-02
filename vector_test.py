@@ -1,4 +1,5 @@
 import vector
+import math
 import unittest
 
 class Vec3Test(unittest.TestCase):
@@ -20,6 +21,13 @@ class Vec3Test(unittest.TestCase):
         vec2 = vector.Vec3(-5., 2., 0.)
         expected = vector.Vec3(0., 5., -2.)
         self.assertEqual(vec1 + vec2, expected)
+
+    def test_vec_spherical(self):
+        vec = vector.unit_vector_from_spherical(0, math.pi / 4)
+        self.assertAlmostEqual(vec.length(), 1)
+        self.assertAlmostEqual(vec.x, 0.5 * math.sqrt(2))
+        self.assertAlmostEqual(vec.y, 0)
+        self.assertAlmostEqual(vec.z, 0.5 * math.sqrt(2))
 
 if __name__ == '__main__':
     unittest.main()
